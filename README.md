@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Internal application for recording challenge's results on gym machines.
 
-Things you may want to cover:
+## Getting started
 
-* Ruby version
+* Install rrequired ruby version `3.1.2`
 
-* System dependencies
+* Install required rails version `7.0.3.1`
 
-* Configuration
+* Install PostgreSQL (via [brew](https://brew.sh) for example)
 
-* Database creation
+* Run bundle install to install all the necessary gems
 
-* Database initialization
+* Ask a colleague for the development master.key file and copy it to the config directory
 
-* How to run the test suite
+* Create the database with rails db:create followed by rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Start the server with rails s
