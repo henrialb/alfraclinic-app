@@ -1,6 +1,6 @@
 # README
 
-App for recording challenge results in athlete recovery and performance clinic Alfraclinic.
+App for recording challenge results in athlete recovery and performance clinic **Alfraclinic**.
 
 ## Getting started
 
