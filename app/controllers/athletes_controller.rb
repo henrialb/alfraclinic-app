@@ -2,7 +2,7 @@ class AthletesController < ApplicationController
   before_action :set_athlete, only: [:show, :update, :destroy]
 
   def index
-    @athletes = Athlete.all.order(:name)
+    @athletes = Athlete.all
     render json: AthleteBlueprint.render(@athletes)
   end
 
