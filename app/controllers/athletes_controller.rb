@@ -1,8 +1,13 @@
 class AthletesController < ApplicationController
   before_action :set_athlete, only: [:show, :update, :destroy, :change_status]
 
-  def index
+  def all
     @athletes = Athlete.all
+    render json: AthleteBlueprint.render(@athletes)
+  end
+
+  def index
+    @athletes = Athlete.active
     render json: AthleteBlueprint.render(@athletes)
   end
 
