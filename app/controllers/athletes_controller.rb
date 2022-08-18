@@ -1,5 +1,5 @@
 class AthletesController < ApplicationController
-  before_action :set_athlete, only: [:show, :update, :destroy, :change_status]
+  before_action :set_athlete, only: %i[show update destroy change_status]
 
   def all
     @athletes = Athlete.all
@@ -7,7 +7,7 @@ class AthletesController < ApplicationController
   end
 
   def index
-    @athletes = Athlete.active
+    @athletes = Athlete.not_archived
     render json: AthleteBlueprint.render(@athletes)
   end
 
@@ -34,7 +34,7 @@ class AthletesController < ApplicationController
   end
 
   def destroy
-    if @athlete.inactive?
+    if @athlete.archived?
       @athlete.destroy
       render json: { message: 'Athlete was successfully deleted' }, status: :ok
     else
@@ -43,10 +43,10 @@ class AthletesController < ApplicationController
   end
 
   def change_status
-    if @athlete.active?
-      @athlete.status = 'inactive'
+    if @athlete.archived?
+      @athlete.archived = false
     else
-      @athlete.status = 'active'
+      @athlete.archived = true
     end
 
     if @athlete.save
