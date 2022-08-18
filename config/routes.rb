@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   }
 
   resources :athletes
+
+  post 'athletes/:id/change_status', to: 'athletes#change_status'
 end

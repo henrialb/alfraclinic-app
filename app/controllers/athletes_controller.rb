@@ -1,5 +1,5 @@
 class AthletesController < ApplicationController
-  before_action :set_athlete, only: [:show, :update, :destroy]
+  before_action :set_athlete, only: [:show, :update, :destroy, :change_status]
 
   def index
     @athletes = Athlete.all
@@ -30,6 +30,20 @@ class AthletesController < ApplicationController
 
   def destroy
     @athlete.destroy
+  end
+
+  def change_status
+    if @athlete.active?
+      @athlete.status = 'inactive'
+    else
+      @athlete.status = 'active'
+    end
+
+    if @athlete.save
+      render json: AthleteBlueprint.render(@athlete)
+    else
+      render json: @athlete.errors, status: :unprocessable_entity
+    end
   end
 
   private
