@@ -34,7 +34,12 @@ class AthletesController < ApplicationController
   end
 
   def destroy
-    @athlete.destroy
+    if @athlete.inactive?
+      @athlete.destroy
+      render json: { message: 'Athlete was successfully deleted' }, status: :ok
+    else
+      render json: { message: "You can't delete an active athlete" }, status: :unprocessable_entity
+    end
   end
 
   def change_status
