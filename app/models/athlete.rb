@@ -1,6 +1,7 @@
 class Athlete < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
+  # Only allow deleting an athlete if they are archived
   before_destroy :abort_destroy, unless: :archived?
 
   enum level: %i[amateur professional]
