@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
-  include RackSessionFix
+module Users
+  class RegistrationsController < Devise::RegistrationsController
+    include RackSessionFix
 
-  respond_to :json
+    respond_to :json
 
-  private
+    private
 
-  def respond_with(resource, _opts = {})
-    register_success && return if resource.persisted?
+    def respond_with(resource, _opts = {})
+      register_success && return if resource.persisted?
 
-    register_failed
-  end
+      register_failed
+    end
 
-  def register_success
-    render json: { message: 'Signed up sucessfully.' }
-  end
+    def register_success
+      render json: { message: 'Signed up sucessfully.' }
+    end
 
-  def register_failed
-    render json: { message: "Something went wrong." }
+    def register_failed
+      render json: { message: 'Something went wrong.' }
+    end
   end
 end
