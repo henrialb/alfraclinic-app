@@ -34,20 +34,15 @@ class AthletesController < ApplicationController
   end
 
   def destroy
-    if @athlete.archived?
-      @athlete.destroy
-      render json: { message: 'Athlete was successfully deleted' }, status: :ok
+    if @athlete.destroy
+      render json: { message: 'Athlete successfully deleted' }, status: :ok
     else
-      render json: { message: "You can't delete an active athlete" }, status: :unprocessable_entity
+      render json: @athlete.errors, status: :unprocessable_entity
     end
   end
 
   def change_status
-    if @athlete.archived?
-      @athlete.archived = false
-    else
-      @athlete.archived = true
-    end
+    @athlete.archived = !@athlete.archived
 
     if @athlete.save
       render json: AthleteBlueprint.render(@athlete)

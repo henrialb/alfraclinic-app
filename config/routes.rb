@@ -13,9 +13,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  get 'athletes/all', to: 'athletes#all'
-
-  resources :athletes
-
-  post 'athletes/:id/change_status', to: 'athletes#change_status'
+  resources :athletes do
+    get :all, on: :collection
+    post :change_status, on: :member
+  end
 end
