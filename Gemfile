@@ -43,6 +43,9 @@ gem 'devise-jwt'
 # JSON Object Presenter
 gem 'blueprinter'
 
+# Fake data for seeds
+gem 'faker'
+
 group :development, :test do
   gem 'pry-byebug'
 end
