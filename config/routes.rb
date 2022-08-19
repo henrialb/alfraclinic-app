@@ -12,4 +12,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  resources :athletes do
+    get :all, on: :collection
+    post :change_status, on: :member
+  end
 end

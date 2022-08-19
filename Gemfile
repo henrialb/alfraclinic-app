@@ -44,7 +44,11 @@ gem 'devise-jwt'
 gem 'blueprinter'
 
 group :development, :test do
+  # Debugging
   gem 'pry-byebug'
+
+  # Fake data for seeds
+  gem 'faker'
 end
 
 group :development do
