@@ -4,8 +4,18 @@ class Challenge < ApplicationRecord
   # Only allow deleting a challenge if it is archived
   before_destroy :abort_destroy, unless: :archived?
 
-  enum category: %i[strength velocity resistance]
-  enum result_unit: %i[un cal minutes cm]
+  enum category: {
+    strength: 0,
+    velocity: 1,
+    resistance: 2
+  }
+
+  enum result_unit: {
+    un: 0,
+    cal: 1,
+    minutes: 2,
+    cm: 3
+  }
 
   scope :archived, -> { where(archived: true) }
   scope :not_archived, -> { all - archived }
