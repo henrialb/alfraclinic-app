@@ -17,4 +17,9 @@ Rails.application.routes.draw do
     get :all, on: :collection
     post :change_status, on: :member
   end
+
+  resources :challenges do
+    get :all, on: :collection
+    post :change_status, on: :member
+  end
 end
