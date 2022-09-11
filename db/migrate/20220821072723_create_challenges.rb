@@ -4,8 +4,9 @@ class CreateChallenges < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :result_unit
-      t.integer :category
-      t.boolean :archived, default: false
+      t.string :category, array: true
+      t.boolean :archived, default: false, index: true
+      t.boolean :order_results_desc, default: true
 
       t.timestamps
     end

@@ -4,10 +4,7 @@ class Athlete < ApplicationRecord
   # Only allow deleting an athlete if they are archived
   before_destroy :abort_destroy, unless: :archived?
 
-  enum level: {
-    amateur: 0,
-    professional: 1
-  }
+  enum level: { amateur: 0, professional: 1 }
 
   scope :archived, -> { where(archived: true) }
   scope :not_archived, -> { all - archived }
